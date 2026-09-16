@@ -32,12 +32,11 @@
       justify-content: center;
     }
 
-    /* Outer Wrapper with Background Image & Pattern */
+    /* Container Background */
     .container {
       width: 100%;
       max-width: 480px;
       min-height: 100vh;
-      /* Dark luxury background pattern styling */
       background: 
         radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.08), transparent 70%),
         radial-gradient(circle at 50% 80%, rgba(20, 20, 20, 0.9), #050505),
@@ -48,7 +47,7 @@
       border-right: 1px solid var(--border-gold);
     }
 
-    /* Falling Snow Canvas Layer */
+    /* Falling Snow Overlay */
     #snow-canvas {
       position: fixed;
       top: 0;
@@ -61,36 +60,56 @@
       z-index: 10;
     }
 
-    h1, h2, h3, .gold-text {
+    h1, h2, h3 {
       font-family: 'Cinzel', serif;
       color: var(--gold-primary);
       text-align: center;
     }
 
-    /* Screen 1: Cover / Tap to Open */
-    #cover-screen {
+    /* Full-Screen Touch Cover Layer */
+    #cover-wrapper {
       position: fixed;
       top: 0;
       width: 100%;
       max-width: 480px;
       height: 100vh;
-      background: radial-gradient(circle at center, #18191d 0%, #08080a 100%);
       z-index: 100;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+      cursor: pointer;
     }
 
-    /* Background Geometric Gold Lines */
-    .line-art {
+    /* Split Doors (Left and Right Panels) */
+    .door {
       position: absolute;
-      width: 100%;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(circle at center, #18191d 0%, #08080a 100%);
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+      overflow: hidden;
+    }
+
+    .door-left {
+      left: 0;
+      border-right: 1px solid var(--border-gold);
+    }
+
+    .door-right {
+      right: 0;
+      border-left: 1px solid var(--border-gold);
+    }
+
+    /* Door Line Art */
+    .line-art-half {
+      position: absolute;
+      width: 200%;
       height: 100%;
       pointer-events: none;
     }
-    .line-art::before, .line-art::after {
+
+    .door-left .line-art-half { left: 0; }
+    .door-right .line-art-half { right: 0; }
+
+    .line-art-half::before {
       content: '';
       position: absolute;
       left: 50%;
@@ -101,39 +120,98 @@
       opacity: 0.35;
     }
 
-    /* Animated Tap Seal Button */
+    /* Floating Bouncing Center Seal */
+    .seal-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 105;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .seal-wrapper {
+      animation: gentleBounce 2.5s ease-in-out infinite;
+    }
+
     .seal-btn {
       position: relative;
-      width: 125px;
-      height: 125px;
+      width: 95px;
+      height: 95px;
       border-radius: 50%;
       background: radial-gradient(circle, #2c2d30 0%, #111215 100%);
-      border: 2px solid var(--gold-primary);
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.35), inset 0 0 12px rgba(0,0,0,0.9);
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3), inset 0 0 10px rgba(0,0,0,0.8);
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      animation: pulse 2.2s infinite;
-      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* Outer Dashed Rotating Ring */
+    .seal-btn::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px dashed var(--gold-primary);
+      opacity: 0.6;
+      animation: rotateRing 12s linear infinite;
+    }
+
+    /* Continuous Rotating Conic Radial Shine */
+    .seal-btn::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: conic-gradient(
+        transparent 0deg,
+        rgba(255, 243, 190, 0.4) 60deg,
+        transparent 120deg,
+        rgba(255, 243, 190, 0.4) 240deg,
+        transparent 300deg
+      );
+      animation: rotateShine 4s linear infinite;
+      mix-blend-mode: overlay;
     }
 
     .seal-btn span {
       font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
       color: var(--gold-light);
       text-align: center;
       text-transform: uppercase;
+      z-index: 2;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5); }
-      70% { box-shadow: 0 0 0 22px rgba(212, 175, 55, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
-    /* Screen 2: Main Invitation Content */
+    @keyframes rotateRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes rotateShine {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Center Split Open Classes */
+    .open-left { transform: translateX(-100%); }
+    .open-right { transform: translateX(100%); }
+    .hide-seal { opacity: 0; }
+    .hide-cover { pointer-events: none; }
+
+    /* Main Content Screen */
     #content-screen {
       padding: 40px 20px;
       opacity: 0;
@@ -164,6 +242,38 @@
       margin-bottom: 8px;
     }
 
+    /* Square Scratch Card Box */
+    .scratch-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 15px auto 0 auto;
+      border-radius: 4px;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .scratch-secret {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #151619;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px dashed var(--gold-primary);
+    }
+
+    canvas#scratch-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
     /* Countdown Grid */
     .countdown-grid {
       display: flex;
@@ -189,68 +299,6 @@
       letter-spacing: 1px;
     }
 
-    /* Scratch Canvas Reveal */
-    .scratch-container {
-      position: relative;
-      width: 100%;
-      height: 100px;
-      margin-top: 15px;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .scratch-secret {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #151619;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border: 1px dashed var(--gold-primary);
-    }
-
-    canvas#scratch-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
-
-    /* Form Inputs */
-    .rsvp-form input, .rsvp-form select {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      background: #111214;
-      border: 1px solid var(--border-gold);
-      color: var(--text-main);
-      border-radius: 4px;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
-      border: none;
-      color: #000;
-      font-weight: bold;
-      font-family: 'Cinzel', serif;
-      cursor: pointer;
-      margin-top: 10px;
-      border-radius: 4px;
-    }
-
-    /* State Handlers */
-    .open-cover {
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
-    }
-
     .show-content {
       opacity: 1 !important;
     }
@@ -258,21 +306,25 @@
 </head>
 <body>
 
-  <!-- Audio Element -->
-  <audio id="bg-music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Snowfall Overlay Canvas -->
   <canvas id="snow-canvas"></canvas>
 
   <div class="container">
     
-    <!-- Cover Screen Overlay -->
-    <div id="cover-screen">
-      <div class="line-art"></div>
-      <div class="seal-btn" onclick="openInvitation()">
-        <span>Tap To<br>Open</span>
+    <!-- Cover Overlay (Tap anywhere to trigger split open) -->
+    <div id="cover-wrapper" onclick="openInvitation()">
+      <div class="door door-left" id="door-left">
+        <div class="line-art-half"></div>
+      </div>
+      <div class="door door-right" id="door-right">
+        <div class="line-art-half"></div>
+      </div>
+
+      <div class="seal-container" id="seal-container">
+        <div class="seal-wrapper">
+          <div class="seal-btn">
+            <span>Tap To<br>Open</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -293,8 +345,9 @@
         <p class="sub-text">Scratch below to reveal the date</p>
         <div class="scratch-container">
           <div class="scratch-secret">
-            <h3 style="color: var(--gold-light);">August 31, 2026</h3>
-            <p style="font-size: 12px;">Monday at 10:30 AM</p>
+            <h3 style="color: var(--gold-light); font-size: 18px;">August 31, 2026</h3>
+            <p style="font-size: 13px; margin-top: 4px;">Monday</p>
+            <p style="font-size: 12px; color: var(--gold-light);">10:30 AM</p>
           </div>
           <canvas id="scratch-canvas"></canvas>
         </div>
@@ -305,40 +358,29 @@
         <div class="countdown-grid">
           <div class="time-box"><span class="num" id="days">00</span><span class="label">DAYS</span></div>
           <div class="time-box"><span class="num" id="hours">00</span><span class="label">HOURS</span></div>
-          <div class="time-box"><span class="num" id="mins">00</span><span class="label">MINS</span></div>
-          <div class="time-box"><span class="num" id="secs">00</span><span class="label">SECS</span></div>
+          <div class="time-box"><span class="num" id="mins">00</span><span class="label">MINUTES</span></div>
+          <div class="time-box"><span class="num" id="secs">00</span><span class="label">SECONDS</span></div>
         </div>
-      </div>
-
-      <div class="section rsvp-form">
-        <h2>RSVP</h2>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Email Address" required />
-        <select>
-          <option value="" disabled selected>Will you attend?</option>
-          <option value="yes">Joyfully Accept</option>
-          <option value="no">Regretfully Decline</option>
-        </select>
-        <button class="btn-submit">CONFIRM ATTENDANCE</button>
       </div>
 
     </div>
   </div>
 
   <script>
-    // 1. Open Gate & Play Audio
+    // Center Split Opening Handler
     function openInvitation() {
-      document.getElementById('cover-screen').classList.add('open-cover');
-      document.getElementById('content-screen').classList.add('show-content');
+      document.getElementById('door-left').classList.add('open-left');
+      document.getElementById('door-right').classList.add('open-right');
+      document.getElementById('seal-container').classList.add('hide-seal');
+      document.getElementById('cover-wrapper').classList.add('hide-cover');
       
-      const audio = document.getElementById('bg-music');
-      audio.play().catch(() => console.log("Autoplay restricted"));
+      document.getElementById('content-screen').classList.add('show-content');
       
       initScratchCard();
       startCountdown();
     }
 
-    // 2. Falling Snow Effect
+    // Snowfall Effect
     const snowCanvas = document.getElementById('snow-canvas');
     const snowCtx = snowCanvas.getContext('2d');
 
@@ -380,7 +422,7 @@
     }
     drawSnow();
 
-    // 3. Live Countdown Timer
+    // Countdown Timer
     function startCountdown() {
       const targetDate = new Date("August 31, 2026 10:30:00").getTime();
       
@@ -397,7 +439,7 @@
       }, 1000);
     }
 
-    // 4. Scratch Card Reveal Canvas
+    // Square Scratch Canvas
     function initScratchCard() {
       const canvas = document.getElementById('scratch-canvas');
       const ctx = canvas.getContext('2d');
@@ -417,23 +459,24 @@
 
       function scratch(e) {
         if (!isDrawing) return;
+        e.preventDefault();
         const rect = canvas.getBoundingClientRect();
-        const x = (e.clientX || e.touches[0].clientX) - rect.left;
-        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+        const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+        const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
 
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(x, y, 16, 0, Math.PI * 2);
+        ctx.arc(x, y, 18, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      canvas.addEventListener('mousedown', () => isDrawing = true);
+      canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
       canvas.addEventListener('mouseup', () => isDrawing = false);
       canvas.addEventListener('mousemove', scratch);
 
-      canvas.addEventListener('touchstart', () => isDrawing = true);
+      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: false });
       canvas.addEventListener('touchend', () => isDrawing = false);
-      canvas.addEventListener('touchmove', scratch);
+      canvas.addEventListener('touchmove', scratch, { passive: false });
     }
   </script>
 </body>
