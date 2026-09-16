@@ -36,6 +36,7 @@
       overflow-y: auto;
     }
 
+    /* Main Container - Clean without side golden borders */
     .main-wrapper {
       width: 100%;
       max-width: 480px;
@@ -59,7 +60,7 @@
       z-index: 10;
     }
 
-    /* Floating Audio Mute Toggle */
+    /* Audio Control */
     .audio-control {
       position: fixed;
       top: 20px;
@@ -98,17 +99,19 @@
       transform: translateY(0);
     }
 
-    /* Fullscreen Hero Section */
+    /* Hero Section */
     .hero-section {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 40px 0;
+      padding: 40px 15px;
+      background: linear-gradient(180deg, rgba(14, 10, 7, 0.75) 0%, rgba(14, 10, 7, 0.92) 100%), 
+                  url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+      border-radius: 0 0 16px 16px;
     }
 
-    /* Uniform Fonts Across Headings */
     h1 {
       font-family: 'Cinzel', serif;
       color: var(--gold-primary);
@@ -120,14 +123,6 @@
       font-family: 'Great Vibes', cursive;
       color: var(--gold-light);
       font-size: 46px;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: 22px;
-      color: var(--gold-primary);
-      letter-spacing: 2px;
       margin-bottom: 8px;
     }
 
@@ -157,7 +152,6 @@
       margin-bottom: 12px;
     }
 
-    /* Dividers */
     .divider {
       display: flex;
       align-items: center;
@@ -180,56 +174,66 @@
       margin: 0 12px;
     }
 
-    /* Cover Doors & Double-Wing Fan Light Seal */
+    /* FULLSCREEN "TAP TO OPEN" OVERLAY - INITIAL ORIGINAL DESIGN */
     #cover-wrapper {
       position: fixed;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 480px;
+      left: 0;
+      width: 100vw;
       height: 100vh;
-      z-index: 100;
+      z-index: 1000;
       cursor: pointer;
-    }
-
-    .door {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: #0a0806;
-      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-    }
-
-    .door-left { left: 0; border-right: 1px solid var(--gold-muted); }
-    .door-right { right: 0; border-left: 1px solid var(--gold-muted); }
-
-    .seal-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 105;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
-    }
-
-    .seal-btn {
-      position: relative;
-      width: 105px;
-      height: 105px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #2a2015 0%, #100b07 100%);
-      border: 1px solid var(--gold-primary);
-      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
     }
 
-    /* Double Wing Fan Light Sweep */
+    .door {
+      position: absolute;
+      top: 0;
+      width: 50vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #1b130a 0%, #080604 100%);
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .door-left { 
+      left: 0; 
+      border-right: 2px solid var(--gold-primary); 
+    }
+    .door-right { 
+      right: 0; 
+      border-left: 2px solid var(--gold-primary); 
+    }
+
+    /* Standard Opening Seal Button */
+    .seal-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2a2015 0%, #0d0906 100%);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1005;
+      overflow: hidden;
+      transition: opacity 0.5s ease;
+      animation: smoothBounce 2.4s ease-in-out infinite;
+    }
+
+    @keyframes smoothBounce {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -58%) scale(1.04); }
+    }
+
+    /* Subtle Shine Effect (25% opacity) */
     .seal-btn::after {
       content: '';
       position: absolute;
@@ -237,13 +241,14 @@
       left: -50%;
       width: 200%;
       height: 200%;
+      opacity: 0.25;
       background: conic-gradient(
         from 0deg,
         transparent 0deg,
-        rgba(255, 243, 190, 0.75) 25deg,
+        rgba(255, 243, 190, 0.9) 25deg,
         transparent 50deg,
         transparent 180deg,
-        rgba(255, 243, 190, 0.75) 205deg,
+        rgba(255, 243, 190, 0.9) 205deg,
         transparent 230deg
       );
       animation: rotateDoubleWing 2.8s linear infinite;
@@ -267,10 +272,10 @@
 
     .open-left { transform: translateX(-100%); }
     .open-right { transform: translateX(100%); }
-    .hide-seal { opacity: 0; }
+    .hide-seal { opacity: 0; pointer-events: none; }
     .hide-cover { pointer-events: none; }
 
-    /* Bouncing Scroll Mention */
+    /* Scroll Indicator */
     .scroll-mention {
       margin-top: 40px;
       display: flex;
@@ -309,10 +314,12 @@
     /* Scratch Card */
     .scratch-wrapper {
       position: relative;
-      width: 240px;
-      height: 240px;
+      width: 250px;
+      height: 250px;
       margin: 25px auto;
       border: 1px solid var(--gold-primary);
+      border-radius: 16px;
+      overflow: hidden;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
     }
 
@@ -334,38 +341,45 @@
       width: 100%;
       height: 100%;
       cursor: pointer;
+      border-radius: 16px;
       transition: opacity 0.6s ease;
     }
 
-    /* Carousel */
+    /* Smooth Cross-Fade Image Slider */
     .carousel-container {
       position: relative;
       width: 100%;
-      max-width: 340px;
-      height: 220px;
+      max-width: 360px;
+      height: 300px;
       margin: 30px auto 12px auto;
+      border: 1px solid var(--gold-muted);
+      border-radius: 16px;
       overflow: hidden;
-      border-top: 1px solid var(--gold-muted);
-      border-bottom: 1px solid var(--gold-muted);
-    }
-
-    .carousel-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
     }
 
     .carousel-slide {
-      min-width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      background: #140f0b;
+      background-size: cover;
+      background-position: center;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
+      padding-bottom: 20px;
       font-size: 15px;
       color: var(--gold-light);
       font-family: 'Cinzel', serif;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
     }
 
     .carousel-dots {
@@ -408,11 +422,11 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    /* Location Card & Map Styling */
+    /* Venue Card */
     .venue-card {
       background: rgba(20, 15, 11, 0.7);
       border: 1px solid var(--gold-muted);
-      border-radius: 8px;
+      border-radius: 16px;
       padding: 20px;
       margin-top: 20px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
@@ -422,7 +436,7 @@
       width: 100%;
       height: 180px;
       border: 1px solid var(--gold-muted);
-      border-radius: 6px;
+      border-radius: 12px;
       margin: 15px 0;
       filter: grayscale(80%) invert(90%) hue-rotate(180deg) contrast(1.2);
     }
@@ -437,7 +451,7 @@
       font-family: 'Cinzel', serif;
       font-size: 12px;
       letter-spacing: 1.5px;
-      border-radius: 4px;
+      border-radius: 8px;
       transition: background 0.3s ease;
     }
 
@@ -445,7 +459,7 @@
       background: rgba(212, 175, 55, 0.2);
     }
 
-    /* Timeline Items */
+    /* Timeline Section */
     .timeline-item {
       margin-top: 24px;
     }
@@ -489,6 +503,7 @@
       letter-spacing: 2px;
       cursor: pointer;
       margin-top: 20px;
+      border-radius: 8px;
       transition: background 0.3s ease;
     }
 
@@ -503,33 +518,28 @@
 
   <canvas id="snow-canvas"></canvas>
 
-  <!-- Audio Element with Autoplay Control -->
   <audio id="bg-music" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-113524.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Audio Toggle Button -->
   <div class="audio-control" id="audio-toggle" onclick="toggleAudio()">
     <span id="audio-icon">♫</span>
   </div>
 
-  <div class="main-wrapper">
-    
-    <!-- Cover Overlay with Double-Wing Fan Light Seal -->
-    <div id="cover-wrapper" onclick="openInvitation()">
-      <div class="door door-left" id="door-left"></div>
-      <div class="door door-right" id="door-right"></div>
-      <div class="seal-container" id="seal-container">
-        <div class="seal-btn">
-          <span>Tap To<br>Open</span>
-        </div>
-      </div>
+  <!-- FULLSCREEN CLEAN TAP TO OPEN COVER -->
+  <div id="cover-wrapper" onclick="openInvitation()">
+    <div class="door door-left" id="door-left"></div>
+    <div class="door door-right" id="door-right"></div>
+    <div class="seal-btn" id="seal-btn">
+      <span>Tap To<br>Open</span>
     </div>
+  </div>
 
+  <div class="main-wrapper">
     <!-- Main Content Screen -->
     <div id="content-screen">
       
-      <!-- Section 1: Fullscreen Hero Section -->
+      <!-- Section 1: Hero Section -->
       <div class="hero-section reveal-on-scroll">
         <p class="sub-text">IN THE NAME OF ALLAH</p>
         <p class="sub-text" style="margin-top: 10px;">WE ARE HONORED TO WELCOME YOU TO THE WEDDING CEREMONY OF</p>
@@ -548,7 +558,6 @@
         
         <p class="sub-text" style="margin-top: 24px;">Request the honour of your presence</p>
 
-        <!-- Bouncing Scroll Mention -->
         <div class="scroll-mention">
           <span>SCROLL</span>
           <div class="bouncing-arrow"></div>
@@ -572,19 +581,15 @@
         </div>
       </div>
 
-      <!-- Auto Carousel Gallery -->
+      <!-- Section 3: Smooth Cross-Fade Image Gallery -->
       <div class="reveal-on-scroll">
         <div class="carousel-container">
-          <div class="carousel-track" id="carousel-track">
-            <div class="carousel-slide">Photo Slide 1</div>
-            <div class="carousel-slide">Photo Slide 2</div>
-            <div class="carousel-slide">Photo Slide 3</div>
-            <div class="carousel-slide">Photo Slide 4</div>
-          </div>
+          <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');">Pre-Wedding Moments</div>
+          <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80');">The Celebration</div>
+          <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');">Together Forever</div>
         </div>
         <div class="carousel-dots" id="carousel-dots">
           <div class="dot active"></div>
-          <div class="dot"></div>
           <div class="dot"></div>
           <div class="dot"></div>
         </div>
@@ -592,7 +597,7 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Section 3: Countdown Timer -->
+      <!-- Section 4: Countdown Timer -->
       <div class="reveal-on-scroll">
         <h2 class="script-heading">Counting Down</h2>
         <div class="countdown-grid">
@@ -605,7 +610,7 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Section 4: Program Timeline -->
+      <!-- Section 5: Program Timeline -->
       <div class="reveal-on-scroll">
         <h2 class="script-heading">Program Timeline</h2>
         
@@ -630,7 +635,7 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Section 5: Venue with Dark Styled Google Maps -->
+      <!-- Section 6: Venue Card -->
       <div class="reveal-on-scroll">
         <h2 class="script-heading">Venue</h2>
         
@@ -638,7 +643,6 @@
           <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold-light); font-weight: 600;">The Taj Mahal Palace</h3>
           <p class="sub-text" style="font-size: 11px; margin-top: 8px;">Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
 
-          <!-- Embedded Map -->
           <iframe 
             class="map-frame"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.2281987588107!2d72.8308434759604!3d18.92172898225211!2m3!1f0!0f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c06fffffff%3A0xc0290485a4d73f57!2sThe%20Taj%20Mahal%20Palace%2C%20Mumbai!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
@@ -652,7 +656,7 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Section 6: RSVP Form -->
+      <!-- Section 7: RSVP Form -->
       <div class="reveal-on-scroll rsvp-container">
         <h2 class="script-heading">RSVP</h2>
         <input type="text" placeholder="YOUR NAME *" required />
@@ -677,12 +681,11 @@
 
       document.getElementById('door-left').classList.add('open-left');
       document.getElementById('door-right').classList.add('open-right');
-      document.getElementById('seal-container').classList.add('hide-seal');
+      document.getElementById('seal-btn').classList.add('hide-seal');
       document.getElementById('cover-wrapper').classList.add('hide-cover');
       document.getElementById('content-screen').classList.add('show-content');
       document.getElementById('audio-toggle').classList.add('visible');
 
-      // Play audio automatically after tap
       music.play().catch(e => console.log("Audio autoplay restricted:", e));
 
       initScratchCard();
@@ -714,7 +717,7 @@
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
     }
 
-    // Snow particle background
+    // Snow Canvas particle effect
     const snowCanvas = document.getElementById('snow-canvas');
     const snowCtx = snowCanvas.getContext('2d');
 
@@ -766,7 +769,7 @@
       }, 1000);
     }
 
-    // Auto Scratch Card Logic
+    // Scratch Card
     function initScratchCard() {
       const canvas = document.getElementById('scratch-canvas');
       const ctx = canvas.getContext('2d');
@@ -826,19 +829,21 @@
       canvas.addEventListener('touchmove', scratch, { passive: false });
     }
 
-    // Auto Carousel
+    // Smooth Cross-Fade Gallery Slider
     function initCarousel() {
-      const track = document.getElementById('carousel-track');
+      const slides = document.querySelectorAll('.carousel-slide');
       const dots = document.querySelectorAll('.dot');
       let currentIndex = 0;
 
       setInterval(() => {
-        currentIndex = (currentIndex + 1) % dots.length;
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach((dot, idx) => {
-          dot.classList.toggle('active', idx === currentIndex);
-        });
-      }, 3200);
+        slides[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+
+        currentIndex = (currentIndex + 1) % slides.length;
+
+        slides[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+      }, 3500);
     }
   </script>
 </body>
