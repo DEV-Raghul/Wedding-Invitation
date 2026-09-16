@@ -22,7 +22,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Scroll locked initially until tapped */
     body {
       background-color: #050403;
       color: var(--text-main);
@@ -44,7 +43,7 @@
       background: radial-gradient(circle at 50% 20%, #1c150e 0%, var(--bg-dark) 80%);
       position: relative;
       box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-      padding: 60px 24px 90px 24px;
+      padding: 0 24px 90px 24px;
       text-align: center;
     }
 
@@ -60,6 +59,34 @@
       z-index: 10;
     }
 
+    /* Floating Audio Mute Toggle */
+    .audio-control {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 99;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(14, 10, 7, 0.85);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .audio-control.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Scroll Animations */
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(30px);
@@ -71,7 +98,17 @@
       transform: translateY(0);
     }
 
-    /* Headings matching live site */
+    /* Fullscreen Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
+    }
+
+    /* Uniform Fonts Across Headings */
     h1 {
       font-family: 'Cinzel', serif;
       color: var(--gold-primary);
@@ -82,7 +119,7 @@
     .script-heading {
       font-family: 'Great Vibes', cursive;
       color: var(--gold-light);
-      font-size: 42px;
+      font-size: 46px;
       margin-bottom: 8px;
     }
 
@@ -120,7 +157,7 @@
       margin-bottom: 12px;
     }
 
-    /* Spacious Dividers */
+    /* Dividers */
     .divider {
       display: flex;
       align-items: center;
@@ -143,7 +180,7 @@
       margin: 0 12px;
     }
 
-    /* Cover Overlay Doors */
+    /* Cover Doors & Double-Wing Fan Light Seal */
     #cover-wrapper {
       position: fixed;
       top: 0;
@@ -168,7 +205,6 @@
     .door-left { left: 0; border-right: 1px solid var(--gold-muted); }
     .door-right { right: 0; border-left: 1px solid var(--gold-muted); }
 
-    /* Single Wing Fan Shine Light Beam Seal */
     .seal-container {
       position: absolute;
       top: 50%;
@@ -193,7 +229,7 @@
       overflow: hidden;
     }
 
-    /* Single Wing Light Sweep */
+    /* Double Wing Fan Light Sweep */
     .seal-btn::after {
       content: '';
       position: absolute;
@@ -205,12 +241,15 @@
         from 0deg,
         transparent 0deg,
         rgba(255, 243, 190, 0.75) 25deg,
-        transparent 50deg
+        transparent 50deg,
+        transparent 180deg,
+        rgba(255, 243, 190, 0.75) 205deg,
+        transparent 230deg
       );
-      animation: rotateSingleWing 2.8s linear infinite;
+      animation: rotateDoubleWing 2.8s linear infinite;
     }
 
-    @keyframes rotateSingleWing {
+    @keyframes rotateDoubleWing {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
@@ -231,9 +270,9 @@
     .hide-seal { opacity: 0; }
     .hide-cover { pointer-events: none; }
 
-    /* Bouncing Scroll Indicator */
+    /* Bouncing Scroll Mention */
     .scroll-mention {
-      margin-top: 35px;
+      margin-top: 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -267,7 +306,7 @@
       transition: opacity 1s ease 0.4s;
     }
 
-    /* Scratch Area */
+    /* Scratch Card */
     .scratch-wrapper {
       position: relative;
       width: 240px;
@@ -369,7 +408,44 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    /* Program Timeline */
+    /* Location Card & Map Styling */
+    .venue-card {
+      background: rgba(20, 15, 11, 0.7);
+      border: 1px solid var(--gold-muted);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 180px;
+      border: 1px solid var(--gold-muted);
+      border-radius: 6px;
+      margin: 15px 0;
+      filter: grayscale(80%) invert(90%) hue-rotate(180deg) contrast(1.2);
+    }
+
+    .btn-maps {
+      display: inline-block;
+      width: 100%;
+      padding: 12px 0;
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-maps:active {
+      background: rgba(212, 175, 55, 0.2);
+    }
+
+    /* Timeline Items */
     .timeline-item {
       margin-top: 24px;
     }
@@ -386,25 +462,6 @@
       color: var(--gold-primary);
       font-family: 'Montserrat', sans-serif;
       margin: 4px 0;
-    }
-
-    /* Venue & Maps Button */
-    .btn-maps {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 10px 22px;
-      border: 1px solid var(--gold-primary);
-      color: var(--gold-light);
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      border-radius: 2px;
-      transition: background 0.3s ease;
-    }
-
-    .btn-maps:active {
-      background: rgba(212, 175, 55, 0.2);
     }
 
     /* RSVP Form */
@@ -446,9 +503,19 @@
 
   <canvas id="snow-canvas"></canvas>
 
+  <!-- Audio Element with Autoplay Control -->
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-113524.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Audio Toggle Button -->
+  <div class="audio-control" id="audio-toggle" onclick="toggleAudio()">
+    <span id="audio-icon">♫</span>
+  </div>
+
   <div class="main-wrapper">
     
-    <!-- Cover Overlay with Single-Wing Fan Light Seal -->
+    <!-- Cover Overlay with Double-Wing Fan Light Seal -->
     <div id="cover-wrapper" onclick="openInvitation()">
       <div class="door door-left" id="door-left"></div>
       <div class="door door-right" id="door-right"></div>
@@ -462,7 +529,8 @@
     <!-- Main Content Screen -->
     <div id="content-screen">
       
-      <div class="reveal-on-scroll">
+      <!-- Section 1: Fullscreen Hero Section -->
+      <div class="hero-section reveal-on-scroll">
         <p class="sub-text">IN THE NAME OF ALLAH</p>
         <p class="sub-text" style="margin-top: 10px;">WE ARE HONORED TO WELCOME YOU TO THE WEDDING CEREMONY OF</p>
         
@@ -489,9 +557,9 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Scratch Box Section -->
+      <!-- Section 2: Scratch Box -->
       <div class="reveal-on-scroll">
-        <h2 class="section-title">Save The Date</h2>
+        <h2 class="script-heading">Save The Date</h2>
         <p class="sub-text" style="font-size: 11px; margin-top: 4px;">Scratch below to reveal the date</p>
         
         <div class="scratch-wrapper" id="scratch-box">
@@ -524,9 +592,9 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Countdown Section -->
+      <!-- Section 3: Countdown Timer -->
       <div class="reveal-on-scroll">
-        <h2 class="section-title">Counting Down</h2>
+        <h2 class="script-heading">Counting Down</h2>
         <div class="countdown-grid">
           <div class="time-box"><span class="num" id="days">00</span><span class="label">DAYS</span></div>
           <div class="time-box"><span class="num" id="hours">00</span><span class="label">HOURS</span></div>
@@ -537,7 +605,7 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Program Timeline Section -->
+      <!-- Section 4: Program Timeline -->
       <div class="reveal-on-scroll">
         <h2 class="script-heading">Program Timeline</h2>
         
@@ -562,19 +630,31 @@
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Venue & Location Section -->
+      <!-- Section 5: Venue with Dark Styled Google Maps -->
       <div class="reveal-on-scroll">
         <h2 class="script-heading">Venue</h2>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold-light); margin-top: 8px; font-weight: 600;">The Taj Mahal Palace</h3>
-        <p class="sub-text" style="font-size: 11px; margin-top: 8px;">Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
-        <a href="https://maps.google.com" target="_blank" class="btn-maps">VIEW ON GOOGLE MAPS</a>
+        
+        <div class="venue-card">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold-light); font-weight: 600;">The Taj Mahal Palace</h3>
+          <p class="sub-text" style="font-size: 11px; margin-top: 8px;">Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
+
+          <!-- Embedded Map -->
+          <iframe 
+            class="map-frame"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.2281987588107!2d72.8308434759604!3d18.92172898225211!2m3!1f0!0f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c06fffffff%3A0xc0290485a4d73f57!2sThe%20Taj%20Mahal%20Palace%2C%20Mumbai!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+
+          <a href="https://maps.google.com/?q=The+Taj+Mahal+Palace+Mumbai" target="_blank" class="btn-maps">OPEN IN GOOGLE MAPS</a>
+        </div>
       </div>
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- RSVP Section -->
+      <!-- Section 6: RSVP Form -->
       <div class="reveal-on-scroll rsvp-container">
-        <h2 class="section-title">RSVP</h2>
+        <h2 class="script-heading">RSVP</h2>
         <input type="text" placeholder="YOUR NAME *" required />
         <input type="email" placeholder="EMAIL ADDRESS *" required />
         <select required>
@@ -589,8 +669,10 @@
   </div>
 
   <script>
+    const music = document.getElementById('bg-music');
+    let isMuted = false;
+
     function openInvitation() {
-      // Unlock page scrolling on tap
       document.body.classList.add('unlocked');
 
       document.getElementById('door-left').classList.add('open-left');
@@ -598,14 +680,28 @@
       document.getElementById('seal-container').classList.add('hide-seal');
       document.getElementById('cover-wrapper').classList.add('hide-cover');
       document.getElementById('content-screen').classList.add('show-content');
-      
+      document.getElementById('audio-toggle').classList.add('visible');
+
+      // Play audio automatically after tap
+      music.play().catch(e => console.log("Audio autoplay restricted:", e));
+
       initScratchCard();
       startCountdown();
       initCarousel();
       initScrollAnimations();
     }
 
-    // Scroll Animations Observer
+    function toggleAudio() {
+      if (isMuted) {
+        music.play();
+        document.getElementById('audio-icon').innerText = '♫';
+      } else {
+        music.pause();
+        document.getElementById('audio-icon').innerText = '✕';
+      }
+      isMuted = !isMuted;
+    }
+
     function initScrollAnimations() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -618,7 +714,7 @@
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
     }
 
-    // Floating Gold Particle Background
+    // Snow particle background
     const snowCanvas = document.getElementById('snow-canvas');
     const snowCtx = snowCanvas.getContext('2d');
 
@@ -670,7 +766,7 @@
       }, 1000);
     }
 
-    // Auto 100% Reveal Scratch Card
+    // Auto Scratch Card Logic
     function initScratchCard() {
       const canvas = document.getElementById('scratch-canvas');
       const ctx = canvas.getContext('2d');
