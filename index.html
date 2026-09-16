@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Veer & Zara - Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0e0a07;
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-muted: rgba(212, 175, 55, 0.4);
+      --text-main: #e8e2d5;
+      --text-muted: #a69f91;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #050403;
+      color: var(--text-main);
+      font-family: 'Cormorant Garamond', serif;
+      display: flex;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    .main-wrapper {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #1a130d 0%, var(--bg-dark) 80%);
+      position: relative;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+      padding: 40px 20px 60px 20px;
+      text-align: center;
+    }
+
+    #snow-canvas {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Scroll Reveal Animation Classes */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .reveal-on-scroll.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Typography */
+    h1, h2 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-primary);
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
+    .names {
+      font-size: 34px;
+      color: var(--gold-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      margin: 4px 0;
+    }
+
+    .sub-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .credentials {
+      font-size: 12px;
+      color: var(--gold-primary);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      height: 1px;
+      width: 50px;
+      background: linear-gradient(to right, transparent, var(--gold-muted), transparent);
+    }
+
+    .divider-diamond {
+      width: 6px;
+      height: 6px;
+      background-color: var(--gold-primary);
+      transform: rotate(45deg);
+      margin: 0 10px;
+    }
+
+    /* Cover Overlay Doors */
+    #cover-wrapper {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 100vh;
+      z-index: 100;
+      cursor: pointer;
+    }
+
+    .door {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: #0a0806;
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .door-left { left: 0; border-right: 1px solid var(--gold-muted); }
+    .door-right { right: 0; border-left: 1px solid var(--gold-muted); }
+
+    /* Tap to Open Shining Seal */
+    .seal-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 105;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .seal-btn {
+      position: relative;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2a2015 0%, #100b07 100%);
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    .seal-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 45%,
+        rgba(243, 229, 171, 0.6) 50%,
+        transparent 55%
+      );
+      animation: sweepShine 3s infinite;
+    }
+
+    .seal-btn span {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.3;
+      z-index: 2;
+    }
+
+    @keyframes sweepShine {
+      0% { transform: translate(-100%, -100%) rotate(45deg); }
+      100% { transform: translate(100%, 100%) rotate(45deg); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+      100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+    }
+
+    .open-left { transform: translateX(-100%); }
+    .open-right { transform: translateX(100%); }
+    .hide-seal { opacity: 0; }
+    .hide-cover { pointer-events: none; }
+
+    /* Bouncing Scroll Mention */
+    .scroll-mention {
+      margin: 25px 0 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .scroll-mention span {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold-primary);
+      margin-bottom: 6px;
+    }
+
+    .bouncing-arrow {
+      width: 14px;
+      height: 14px;
+      border-right: 2px solid var(--gold-primary);
+      border-bottom: 2px solid var(--gold-primary);
+      transform: rotate(45deg);
+      animation: bounceDown 1.5s infinite;
+    }
+
+    @keyframes bounceDown {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+      40% { transform: translateY(8px) rotate(45deg); }
+      60% { transform: translateY(4px) rotate(45deg); }
+    }
+
+    /* Content Screen */
+    #content-screen {
+      opacity: 0;
+      transition: opacity 1s ease 0.4s;
+    }
+
+    /* Scratch Area */
+    .scratch-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 20px auto;
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+
+    .scratch-secret {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #120e0a;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas#scratch-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      transition: opacity 0.6s ease;
+    }
+
+    /* Auto Carousel */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      height: 200px;
+      margin: 25px auto 10px auto;
+      overflow: hidden;
+      border-top: 1px solid var(--gold-muted);
+      border-bottom: 1px solid var(--gold-muted);
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      background: #140f0b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--gold-primary);
+    }
+
+    /* Countdown Grid */
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .time-box .num {
+      font-size: 24px;
+      font-family: 'Cinzel', serif;
+      color: var(--gold-light);
+      display: block;
+    }
+
+    .time-box .label {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* RSVP Form */
+    .rsvp-container input, .rsvp-container select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--gold-muted);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-submit:active {
+      background: rgba(212, 175, 55, 0.2);
+    }
+
+    .show-content { opacity: 1 !important; }
+  </style>
+</head>
+<body>
+
+  <canvas id="snow-canvas"></canvas>
+
+  <div class="main-wrapper">
+    
+    <!-- Cover Doors Overlay with Shining Seal -->
+    <div id="cover-wrapper" onclick="openInvitation()">
+      <div class="door door-left" id="door-left"></div>
+      <div class="door door-right" id="door-right"></div>
+      <div class="seal-container" id="seal-container">
+        <div class="seal-btn">
+          <span>Tap To<br>Open</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Screen -->
+    <div id="content-screen">
+      
+      <div class="reveal-on-scroll">
+        <p class="sub-text">IN THE NAME OF ALLAH</p>
+        <p class="sub-text" style="margin-top: 8px;">WE ARE HONORED TO WELCOME YOU TO THE WEDDING CEREMONY OF</p>
+        
+        <div class="divider"><div class="divider-diamond"></div></div>
+
+        <h1 class="names">Veer</h1>
+        <p class="sub-text">Son of Mr. & Mrs. Khan</p>
+        <p class="credentials">M.Tech, PhD — Software Engineer</p>
+        
+        <p style="font-family: 'Cinzel', serif; color: var(--gold-primary); margin: 10px 0;">&</p>
+        
+        <h1 class="names">Zara</h1>
+        <p class="sub-text">Daughter of Mr. & Mrs. Pathan</p>
+        <p class="credentials">B.Tech, MBA — Advocate, High Court</p>
+        
+        <p class="sub-text" style="margin-top: 20px;">Request the honour of your presence</p>
+
+        <!-- Bouncing Scroll Mention -->
+        <div class="scroll-mention">
+          <span>SCROLL</span>
+          <div class="bouncing-arrow"></div>
+        </div>
+      </div>
+
+      <div class="divider"><div class="divider-diamond"></div></div>
+
+      <!-- Scratch Area -->
+      <div class="reveal-on-scroll">
+        <h2 style="font-size: 18px;">Save The Date</h2>
+        <p class="sub-text" style="font-size: 10px; margin-top: 4px;">Scratch below to reveal the date</p>
+        
+        <div class="scratch-wrapper" id="scratch-box">
+          <div class="scratch-secret">
+            <h3 style="color: var(--gold-light); font-family: 'Cinzel', serif; font-size: 20px;">August 31, 2026</h3>
+            <p style="font-size: 14px; margin-top: 6px; color: var(--text-muted);">Monday</p>
+            <p style="font-size: 12px; color: var(--gold-primary); margin-top: 4px;">10:30 AM</p>
+          </div>
+          <canvas id="scratch-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Auto Carousel Gallery -->
+      <div class="reveal-on-scroll">
+        <div class="carousel-container">
+          <div class="carousel-track" id="carousel-track">
+            <div class="carousel-slide">Photo Slide 1</div>
+            <div class="carousel-slide">Photo Slide 2</div>
+            <div class="carousel-slide">Photo Slide 3</div>
+            <div class="carousel-slide">Photo Slide 4</div>
+          </div>
+        </div>
+        <div class="carousel-dots" id="carousel-dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+
+      <div class="divider"><div class="divider-diamond"></div></div>
+
+      <!-- Countdown -->
+      <div class="reveal-on-scroll">
+        <h2 style="font-size: 18px;">Counting Down</h2>
+        <div class="countdown-grid">
+          <div class="time-box"><span class="num" id="days">00</span><span class="label">DAYS</span></div>
+          <div class="time-box"><span class="num" id="hours">00</span><span class="label">HOURS</span></div>
+          <div class="time-box"><span class="num" id="mins">00</span><span class="label">MINS</span></div>
+          <div class="time-box"><span class="num" id="secs">00</span><span class="label">SECS</span></div>
+        </div>
+      </div>
+
+      <div class="divider"><div class="divider-diamond"></div></div>
+
+      <!-- Venue -->
+      <div class="reveal-on-scroll">
+        <h2 style="font-size: 18px;">Venue</h2>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold-light); margin-top: 8px;">The Taj Mahal Palace</h3>
+        <p class="sub-text" style="font-size: 10px; margin-top: 6px;">Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
+      </div>
+
+      <div class="divider"><div class="divider-diamond"></div></div>
+
+      <!-- RSVP Form without Message Section -->
+      <div class="reveal-on-scroll rsvp-container">
+        <h2 style="font-size: 18px;">RSVP</h2>
+        <input type="text" placeholder="YOUR NAME *" required />
+        <input type="email" placeholder="EMAIL ADDRESS *" required />
+        <select required>
+          <option value="" disabled selected style="background: #0e0a07;">WILL YOU BE ATTENDING? *</option>
+          <option value="yes" style="background: #0e0a07;">JOYFULLY ACCEPT</option>
+          <option value="no" style="background: #0e0a07;">REGRETFULLY DECLINE</option>
+        </select>
+        <button class="btn-submit">CONFIRM ATTENDANCE</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function openInvitation() {
+      document.getElementById('door-left').classList.add('open-left');
+      document.getElementById('door-right').classList.add('open-right');
+      document.getElementById('seal-container').classList.add('hide-seal');
+      document.getElementById('cover-wrapper').classList.add('hide-cover');
+      document.getElementById('content-screen').classList.add('show-content');
+      
+      initScratchCard();
+      startCountdown();
+      initCarousel();
+      initScrollAnimations();
+    }
+
+    // Scroll Animations Observer
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    }
+
+    // Snow particle background
+    const snowCanvas = document.getElementById('snow-canvas');
+    const snowCtx = snowCanvas.getContext('2d');
+
+    function resizeSnowCanvas() {
+      snowCanvas.width = snowCanvas.offsetWidth;
+      snowCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeSnowCanvas);
+    resizeSnowCanvas();
+
+    const particles = Array.from({ length: 35 }, () => ({
+      x: Math.random() * snowCanvas.width,
+      y: Math.random() * snowCanvas.height,
+      radius: Math.random() * 1.8 + 0.5,
+      speedY: Math.random() * 0.8 + 0.3,
+      speedX: Math.random() * 0.4 - 0.2,
+      opacity: Math.random() * 0.6 + 0.2
+    }));
+
+    function drawSnow() {
+      snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+      particles.forEach(p => {
+        snowCtx.beginPath();
+        snowCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        snowCtx.fillStyle = `rgba(243, 229, 171, ${p.opacity})`;
+        snowCtx.fill();
+        p.y += p.speedY;
+        p.x += p.speedX;
+        if (p.y > snowCanvas.height) {
+          p.y = -5;
+          p.x = Math.random() * snowCanvas.width;
+        }
+      });
+      requestAnimationFrame(drawSnow);
+    }
+    drawSnow();
+
+    // Countdown Timer
+    function startCountdown() {
+      const targetDate = new Date("August 31, 2026 10:30:00").getTime();
+      setInterval(() => {
+        const diff = targetDate - new Date().getTime();
+        if (diff > 0) {
+          document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+          document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+          document.getElementById("mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+          document.getElementById("secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+        }
+      }, 1000);
+    }
+
+    // Auto 100% Reveal Scratch Card Logic
+    function initScratchCard() {
+      const canvas = document.getElementById('scratch-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
+      ctx.fillStyle = '#b89228';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '500 12px Montserrat';
+      ctx.fillStyle = '#0e0a07';
+      ctx.textAlign = 'center';
+      ctx.fillText('Scratch Here', canvas.width / 2, canvas.height / 2 + 4);
+
+      let isDrawing = false;
+      let isCleared = false;
+
+      function checkAutoReveal() {
+        if (isCleared) return;
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+        let clearCount = 0;
+
+        for (let i = 3; i < pixels.length; i += 4) {
+          if (pixels[i] === 0) clearCount++;
+        }
+
+        // If 20% scratched, clear 100% automatically
+        if ((clearCount / (pixels.length / 4)) > 0.2) {
+          isCleared = true;
+          canvas.style.opacity = '0';
+          setTimeout(() => {
+            canvas.style.display = 'none';
+          }, 600);
+        }
+      }
+
+      function scratch(e) {
+        if (!isDrawing || isCleared) return;
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+        const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2);
+        ctx.fill();
+
+        checkAutoReveal();
+      }
+
+      canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mousemove', scratch);
+      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: false });
+      canvas.addEventListener('touchend', () => isDrawing = false);
+      canvas.addEventListener('touchmove', scratch, { passive: false });
+    }
+
+    // Auto Carousel
+    function initCarousel() {
+      const track = document.getElementById('carousel-track');
+      const dots = document.querySelectorAll('.dot');
+      let currentIndex = 0;
+
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % dots.length;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
+        });
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
