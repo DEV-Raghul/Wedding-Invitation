@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Veer & Zara - Wedding Invitation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Mukta+Malar:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-dark: #0e0a07;
@@ -25,7 +25,7 @@
     body {
       background-color: #050403;
       color: var(--text-main);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Mukta Malar', serif;
       display: flex;
       justify-content: center;
       overflow: hidden;
@@ -36,7 +36,6 @@
       overflow-y: auto;
     }
 
-    /* Main Container */
     .main-wrapper {
       width: 100%;
       max-width: 480px;
@@ -87,8 +86,8 @@
       pointer-events: auto;
     }
 
-    /* Language Indicator Badge */
-    .lang-badge {
+    /* Language Switcher Toggle Button */
+    .lang-toggle {
       position: fixed;
       top: 20px;
       left: 20px;
@@ -98,17 +97,19 @@
       background: rgba(14, 10, 7, 0.85);
       border: 1px solid var(--gold-primary);
       color: var(--gold-light);
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', 'Mukta Malar', sans-serif;
       font-size: 11px;
       letter-spacing: 1px;
-      text-transform: uppercase;
+      cursor: pointer;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.5s ease;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
     }
 
-    .lang-badge.visible {
+    .lang-toggle.visible {
       opacity: 1;
+      pointer-events: auto;
     }
 
     /* Scroll Animations */
@@ -137,14 +138,14 @@
     }
 
     h1 {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Mukta Malar', serif;
       color: var(--gold-primary);
       font-weight: 600;
       letter-spacing: 2px;
     }
 
     .script-heading {
-      font-family: 'Great Vibes', cursive;
+      font-family: 'Great Vibes', 'Mukta Malar', cursive;
       color: var(--gold-light);
       font-size: 46px;
       margin-bottom: 8px;
@@ -153,7 +154,7 @@
     .names {
       font-size: 42px;
       color: var(--gold-light);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Mukta Malar', serif;
       font-style: italic;
       margin: 8px 0;
       font-weight: 600;
@@ -164,7 +165,7 @@
       color: var(--text-muted);
       letter-spacing: 1.8px;
       text-transform: uppercase;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', 'Mukta Malar', sans-serif;
       font-weight: 300;
       line-height: 1.6;
     }
@@ -231,7 +232,6 @@
       border-left: 2px solid var(--gold-primary); 
     }
 
-    /* Standard Opening Seal Button */
     .seal-btn {
       position: absolute;
       top: 50%;
@@ -283,7 +283,7 @@
     }
 
     .seal-btn span {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Mukta Malar', serif;
       font-size: 11px;
       letter-spacing: 1.5px;
       color: var(--gold-light);
@@ -307,7 +307,7 @@
     }
 
     .scroll-mention span {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Mukta Malar', serif;
       font-size: 12px;
       letter-spacing: 3px;
       color: var(--gold-primary);
@@ -368,7 +368,7 @@
       transition: opacity 0.6s ease;
     }
 
-    /* Image Gallery Slider */
+    /* Gallery Slider */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -395,7 +395,7 @@
       padding-bottom: 20px;
       font-size: 15px;
       color: var(--gold-light);
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Mukta Malar', serif;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
       opacity: 0;
       transition: opacity 1.2s ease-in-out;
@@ -433,7 +433,7 @@
 
     .time-box .num {
       font-size: 28px;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Montserrat', serif;
       color: var(--gold-light);
       display: block;
     }
@@ -442,7 +442,7 @@
       font-size: 10px;
       color: var(--text-muted);
       letter-spacing: 2px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', 'Mukta Malar', sans-serif;
     }
 
     /* Venue Card */
@@ -471,7 +471,7 @@
       border: 1px solid var(--gold-primary);
       color: var(--gold-light);
       text-decoration: none;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Mukta Malar', serif;
       font-size: 12px;
       letter-spacing: 1.5px;
       border-radius: 8px;
@@ -488,7 +488,7 @@
     }
 
     .timeline-item h3 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Mukta Malar', serif;
       font-size: 22px;
       color: var(--gold-light);
       font-weight: 600;
@@ -497,7 +497,7 @@
     .timeline-time {
       font-size: 13px;
       color: var(--gold-primary);
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', 'Mukta Malar', sans-serif;
       margin: 4px 0;
     }
 
@@ -510,7 +510,7 @@
       border: none;
       border-bottom: 1px solid var(--gold-muted);
       color: var(--text-main);
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Montserrat', 'Mukta Malar', sans-serif;
       font-size: 13px;
       outline: none;
     }
@@ -521,7 +521,7 @@
       background: transparent;
       border: 1px solid var(--gold-primary);
       color: var(--gold-light);
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Mukta Malar', serif;
       font-size: 13px;
       letter-spacing: 2px;
       cursor: pointer;
@@ -545,18 +545,19 @@
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-113524.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="lang-badge" id="lang-display">EN</div>
+  <!-- Language Switcher Button -->
+  <button class="lang-toggle" id="lang-btn" onclick="toggleLanguage()">EN / தமிழ்</button>
 
   <div class="audio-control" id="audio-toggle" onclick="toggleAudio()">
     <span id="audio-icon">♫</span>
   </div>
 
-  <!-- FULLSCREEN TAP TO OPEN COVER -->
+  <!-- FULLSCREEN COVER -->
   <div id="cover-wrapper" onclick="openInvitation()">
     <div class="door door-left" id="door-left"></div>
     <div class="door door-right" id="door-right"></div>
     <div class="seal-btn" id="seal-btn">
-      <span>Tap To<br>Open</span>
+      <span id="txt-tap-open">Tap To<br>Open</span>
     </div>
   </div>
 
@@ -565,41 +566,41 @@
       
       <!-- Section 1: Hero Section -->
       <div class="hero-section reveal-on-scroll">
-        <p class="sub-text">IN THE NAME OF ALLAH</p>
-        <p class="sub-text" style="margin-top: 10px;">WE ARE HONORED TO WELCOME YOU TO THE WEDDING CEREMONY OF</p>
+        <p class="sub-text" id="txt-bismillah">IN THE NAME OF ALLAH</p>
+        <p class="sub-text" id="txt-welcome" style="margin-top: 10px;">WE ARE HONORED TO WELCOME YOU TO THE WEDDING CEREMONY OF</p>
         
         <div class="divider"><div class="divider-diamond"></div></div>
 
-        <h1 class="names">Veer</h1>
-        <p class="sub-text">Son of Mr. & Mrs. Khan</p>
-        <p class="credentials">M.Tech, PhD — Software Engineer</p>
+        <h1 class="names" id="txt-groom">Veer</h1>
+        <p class="sub-text" id="txt-groom-parents">Son of Mr. & Mrs. Khan</p>
+        <p class="credentials" id="txt-groom-degree">M.Tech, PhD — Software Engineer</p>
         
         <p style="font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold-primary); margin: 12px 0;">&</p>
         
-        <h1 class="names">Zara</h1>
-        <p class="sub-text">Daughter of Mr. & Mrs. Pathan</p>
-        <p class="credentials">B.Tech, MBA — Advocate, High Court</p>
+        <h1 class="names" id="txt-bride">Zara</h1>
+        <p class="sub-text" id="txt-bride-parents">Daughter of Mr. & Mrs. Pathan</p>
+        <p class="credentials" id="txt-bride-degree">B.Tech, MBA — Advocate, High Court</p>
         
-        <p class="sub-text" style="margin-top: 24px;">Request the honour of your presence</p>
+        <p class="sub-text" id="txt-presence-req" style="margin-top: 24px;">Request the honour of your presence</p>
 
         <div class="scroll-mention">
-          <span>SCROLL</span>
+          <span id="txt-scroll">SCROLL</span>
           <div class="bouncing-arrow"></div>
         </div>
       </div>
 
       <div class="divider"><div class="divider-diamond"></div></div>
 
-      <!-- Section 2: Scratch Box -->
+      <!-- Section 2: Save The Date Scratch Box -->
       <div class="reveal-on-scroll">
-        <h2 class="script-heading">Save The Date</h2>
-        <p class="sub-text" style="font-size: 11px; margin-top: 4px;">Scratch below to reveal the date</p>
+        <h2 class="script-heading" id="txt-save-date">Save The Date</h2>
+        <p class="sub-text" id="txt-scratch-sub" style="font-size: 11px; margin-top: 4px;">Scratch below to reveal the date</p>
         
         <div class="scratch-wrapper" id="scratch-box">
           <div class="scratch-secret">
-            <h3 style="color: var(--gold-light); font-family: 'Cinzel', serif; font-size: 22px;">August 31, 2026</h3>
-            <p style="font-size: 15px; margin-top: 6px; color: var(--text-muted);">Monday</p>
-            <p style="font-size: 13px; color: var(--gold-primary); margin-top: 4px;">10:30 AM</p>
+            <h3 id="txt-wedding-date" style="color: var(--gold-light); font-family: 'Cinzel', 'Mukta Malar', serif; font-size: 22px;">August 31, 2026</h3>
+            <p id="txt-wedding-day" style="font-size: 15px; margin-top: 6px; color: var(--text-muted);">Monday</p>
+            <p id="txt-wedding-time" style="font-size: 13px; color: var(--gold-primary); margin-top: 4px;">10:30 AM</p>
           </div>
           <canvas id="scratch-canvas"></canvas>
         </div>
@@ -608,9 +609,9 @@
       <!-- Section 3: Smooth Cross-Fade Image Gallery -->
       <div class="reveal-on-scroll">
         <div class="carousel-container">
-          <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');">Pre-Wedding Moments</div>
-          <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80');">The Celebration</div>
-          <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');">Together Forever</div>
+          <div class="carousel-slide active" id="txt-slide1" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');">Pre-Wedding Moments</div>
+          <div class="carousel-slide" id="txt-slide2" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80');">The Celebration</div>
+          <div class="carousel-slide" id="txt-slide3" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');">Together Forever</div>
         </div>
         <div class="carousel-dots" id="carousel-dots">
           <div class="dot active"></div>
@@ -623,12 +624,12 @@
 
       <!-- Section 4: Countdown Timer -->
       <div class="reveal-on-scroll">
-        <h2 class="script-heading">Counting Down</h2>
+        <h2 class="script-heading" id="txt-countdown-title">Counting Down</h2>
         <div class="countdown-grid">
-          <div class="time-box"><span class="num" id="days">00</span><span class="label">DAYS</span></div>
-          <div class="time-box"><span class="num" id="hours">00</span><span class="label">HOURS</span></div>
-          <div class="time-box"><span class="num" id="mins">00</span><span class="label">MINS</span></div>
-          <div class="time-box"><span class="num" id="secs">00</span><span class="label">SECS</span></div>
+          <div class="time-box"><span class="num" id="days">00</span><span class="label" id="lbl-days">DAYS</span></div>
+          <div class="time-box"><span class="num" id="hours">00</span><span class="label" id="lbl-hours">HOURS</span></div>
+          <div class="time-box"><span class="num" id="mins">00</span><span class="label" id="lbl-mins">MINS</span></div>
+          <div class="time-box"><span class="num" id="secs">00</span><span class="label" id="lbl-secs">SECS</span></div>
         </div>
       </div>
 
@@ -636,24 +637,24 @@
 
       <!-- Section 5: Program Timeline -->
       <div class="reveal-on-scroll">
-        <h2 class="script-heading">Program Timeline</h2>
+        <h2 class="script-heading" id="txt-timeline-title">Program Timeline</h2>
         
         <div class="timeline-item">
-          <h3>Guest Arrival</h3>
-          <p class="timeline-time">Aug 31, 2026 — 10:00 AM</p>
-          <p class="sub-text" style="font-size: 11px;">We Warmly welcome you.. !</p>
+          <h3 id="txt-evt1-title">Guest Arrival</h3>
+          <p class="timeline-time" id="txt-evt1-time">Aug 31, 2026 — 10:00 AM</p>
+          <p class="sub-text" id="txt-evt1-desc" style="font-size: 11px;">We Warmly welcome you.. !</p>
         </div>
 
         <div class="timeline-item">
-          <h3>Wedding Ceremony</h3>
-          <p class="timeline-time">Aug 31, 2026 — 10:30 AM</p>
-          <p class="sub-text" style="font-size: 11px;">Your gracious presence is requested ❤</p>
+          <h3 id="txt-evt2-title">Wedding Ceremony</h3>
+          <p class="timeline-time" id="txt-evt2-time">Aug 31, 2026 — 10:30 AM</p>
+          <p class="sub-text" id="txt-evt2-desc" style="font-size: 11px;">Your gracious presence is requested ❤</p>
         </div>
 
         <div class="timeline-item">
-          <h3>Reception</h3>
-          <p class="timeline-time">Sep 02, 2026 — 07:30 PM</p>
-          <p class="sub-text" style="font-size: 11px;">Your gracious presence is requested at the Reception</p>
+          <h3 id="txt-evt3-title">Reception</h3>
+          <p class="timeline-time" id="txt-evt3-time">Sep 02, 2026 — 07:30 PM</p>
+          <p class="sub-text" id="txt-evt3-desc" style="font-size: 11px;">Your gracious presence is requested at the Reception</p>
         </div>
       </div>
 
@@ -661,11 +662,11 @@
 
       <!-- Section 6: Venue Card -->
       <div class="reveal-on-scroll">
-        <h2 class="script-heading">Venue</h2>
+        <h2 class="script-heading" id="txt-venue-heading">Venue</h2>
         
         <div class="venue-card">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold-light); font-weight: 600;">The Taj Mahal Palace</h3>
-          <p class="sub-text" style="font-size: 11px; margin-top: 8px;">Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
+          <h3 id="txt-venue-title" style="font-family: 'Cormorant Garamond', 'Mukta Malar', serif; font-size: 26px; color: var(--gold-light); font-weight: 600;">The Taj Mahal Palace</h3>
+          <p class="sub-text" id="txt-venue-address" style="font-size: 11px; margin-top: 8px;">Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
 
           <iframe 
             class="map-frame"
@@ -674,7 +675,7 @@
             loading="lazy">
           </iframe>
 
-          <a href="https://maps.google.com/?q=The+Taj+Mahal+Palace+Mumbai" target="_blank" class="btn-maps">OPEN IN GOOGLE MAPS</a>
+          <a href="https://maps.google.com/?q=The+Taj+Mahal+Palace+Mumbai" target="_blank" class="btn-maps" id="txt-map-btn">OPEN IN GOOGLE MAPS</a>
         </div>
       </div>
 
@@ -683,14 +684,14 @@
       <!-- Section 7: RSVP Form -->
       <div class="reveal-on-scroll rsvp-container">
         <h2 class="script-heading">RSVP</h2>
-        <input type="text" placeholder="YOUR NAME *" required />
-        <input type="email" placeholder="EMAIL ADDRESS *" required />
-        <select required>
-          <option value="" disabled selected style="background: #0e0a07;">WILL YOU BE ATTENDING? *</option>
-          <option value="yes" style="background: #0e0a07;">JOYFULLY ACCEPT</option>
-          <option value="no" style="background: #0e0a07;">REGRETFULLY DECLINE</option>
+        <input type="text" id="inp-name" placeholder="YOUR NAME *" required />
+        <input type="email" id="inp-email" placeholder="EMAIL ADDRESS *" required />
+        <select id="sel-attend" required>
+          <option value="" disabled selected style="background: #0e0a07;" id="opt-default">WILL YOU BE ATTENDING? *</option>
+          <option value="yes" style="background: #0e0a07;" id="opt-yes">JOYFULLY ACCEPT</option>
+          <option value="no" style="background: #0e0a07;" id="opt-no">REGRETFULLY DECLINE</option>
         </select>
-        <button class="btn-submit">CONFIRM ATTENDANCE</button>
+        <button class="btn-submit" id="btn-submit">CONFIRM ATTENDANCE</button>
       </div>
 
     </div>
@@ -699,22 +700,177 @@
   <script>
     const music = document.getElementById('bg-music');
     let isMuted = false;
+    let currentLang = 'en';
 
-    // Detect mobile device language automatically on load
-    function initDefaultMobileLanguage() {
-      const userLang = navigator.language || navigator.userLanguage || 'en';
-      const langCode = userLang.substring(0, 2).toLowerCase();
-      document.documentElement.lang = langCode;
-      
-      const langDisplay = document.getElementById('lang-display');
-      if (langDisplay) {
-        langDisplay.innerText = langCode.toUpperCase();
+    // English and Tamil Dictionary
+    const translations = {
+      en: {
+        tapOpen: "Tap To<br>Open",
+        bismillah: "IN THE NAME OF ALLAH",
+        welcome: "WE ARE HONORED TO WELCOME YOU TO THE WEDDING CEREMONY OF",
+        groom: "Veer",
+        groomParents: "Son of Mr. & Mrs. Khan",
+        groomDegree: "M.Tech, PhD — Software Engineer",
+        bride: "Zara",
+        brideParents: "Daughter of Mr. & Mrs. Pathan",
+        brideDegree: "B.Tech, MBA — Advocate, High Court",
+        presenceReq: "Request the honour of your presence",
+        scroll: "SCROLL",
+        saveDate: "Save The Date",
+        scratchSub: "Scratch below to reveal the date",
+        scratchCanvasText: "Scratch Here",
+        weddingDate: "August 31, 2026",
+        weddingDay: "Monday",
+        weddingTime: "10:30 AM",
+        slide1: "Pre-Wedding Moments",
+        slide2: "The Celebration",
+        slide3: "Together Forever",
+        countdownTitle: "Counting Down",
+        days: "DAYS",
+        hours: "HOURS",
+        mins: "MINS",
+        secs: "SECS",
+        timelineTitle: "Program Timeline",
+        evt1Title: "Guest Arrival",
+        evt1Time: "Aug 31, 2026 — 10:00 AM",
+        evt1Desc: "We Warmly welcome you.. !",
+        evt2Title: "Wedding Ceremony",
+        evt2Time: "Aug 31, 2026 — 10:30 AM",
+        evt2Desc: "Your gracious presence is requested ❤",
+        evt3Title: "Reception",
+        evt3Time: "Sep 02, 2026 — 07:30 PM",
+        evt3Desc: "Your gracious presence is requested at the Reception",
+        venueHeading: "Venue",
+        venueTitle: "The Taj Mahal Palace",
+        venueAddress: "Apollo Bandar, Colaba, Mumbai, Maharashtra 400001",
+        mapBtn: "OPEN IN GOOGLE MAPS",
+        inpName: "YOUR NAME *",
+        inpEmail: "EMAIL ADDRESS *",
+        optDefault: "WILL YOU BE ATTENDING? *",
+        optYes: "JOYFULLY ACCEPT",
+        optNo: "REGRETFULLY DECLINE",
+        btnSubmit: "CONFIRM ATTENDANCE",
+        langBtn: "ENGLISH / தமிழ்"
+      },
+      ta: {
+        tapOpen: "திறக்க<br>தொடுங்கள்",
+        bismillah: "இறைவன் திருப்பெயரால்",
+        welcome: "எங்கள் திருமண விழாவிற்கு உங்களை அன்போடு வரவேற்கிறோம்",
+        groom: "வீர்",
+        groomParents: "திரு & திருமதி கான் அவர்களின் புதல்வர்",
+        groomDegree: "எம்.டெக், பி.எச்.டி — மென்பொருள் பொறியாளர்",
+        bride: "ஜாரா",
+        brideParents: "திரு & திருமதி பதான் அவர்களின் புதல்வி",
+        brideDegree: "பி.டெக், எம்.பி.ஏ — வழக்கறிஞர்",
+        presenceReq: "உங்கள் நல்வருகையை மகிழ்வோடு விரும்புகிறோம்",
+        scroll: "கீழே செல்லவும்",
+        saveDate: "நிகழ்ச்சி நாள்",
+        scratchSub: "நாளை அறிய கீழே தேய்க்கவும்",
+        scratchCanvasText: "இங்கே தேய்க்கவும்",
+        weddingDate: "ஆகஸ்ட் 31, 2026",
+        weddingDay: "திங்கட்கிழமை",
+        weddingTime: "காலை 10:30 மணி",
+        slide1: "திருமண நினைவுகள்",
+        slide2: "கொண்டாட்டம்",
+        slide3: "என்றும் இணைந்திருப்போம்",
+        countdownTitle: "நாட்கள் எண்ணிக்கை",
+        days: "நாட்கள்",
+        hours: "மணி",
+        mins: "நிமிடம்",
+        secs: "விநாடி",
+        timelineTitle: "நிகழ்ச்சி நிரல்",
+        evt1Title: "விருந்தினர் வருகை",
+        evt1Time: "ஆகஸ்ட் 31, 2026 — காலை 10:00 மணி",
+        evt1Desc: "உங்களை அன்போடு வரவேற்கிறோம்.. !",
+        evt2Title: "திருமண விழா",
+        evt2Time: "ஆகஸ்ட் 31, 2026 — காலை 10:30 மணி",
+        evt2Desc: "உங்கள் வருகை எமக்கு மகிழ்ச்சி அளிக்கிறது ❤",
+        evt3Title: "வரவேற்பு நிகழ்ச்சி",
+        evt3Time: "செப்டம்பர் 02, 2026 — மாலை 07:30 மணி",
+        evt3Desc: "வரவேற்பு விழாவில் உங்கள் நல்வருகையை நாடுகிறோம்",
+        venueHeading: "நிகழ்ச்சி இடம்",
+        venueTitle: "தி தாஜ் மஹால் பேலஸ்",
+        venueAddress: "அப்பல்லோ பந்தர், கொலாபா, மும்பை, மகாராஷ்டிரா 400001",
+        mapBtn: "கூகிள் மேப்பில் பார்க்க",
+        inpName: "உங்கள் பெயர் *",
+        inpEmail: "மின்னஞ்சல் முகவரி *",
+        optDefault: "வருகை தருவீர்களா? *",
+        optYes: "மகிழ்ச்சியுடன் ஏற்கிறேன்",
+        optNo: "வர இயலவில்லை",
+        btnSubmit: "உறுதிப்படுத்தவும்",
+        langBtn: "தமிழ் / ENGLISH"
+      }
+    };
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      const t = translations[lang];
+
+      document.getElementById('txt-tap-open').innerHTML = t.tapOpen;
+      document.getElementById('txt-bismillah').innerText = t.bismillah;
+      document.getElementById('txt-welcome').innerText = t.welcome;
+      document.getElementById('txt-groom').innerText = t.groom;
+      document.getElementById('txt-groom-parents').innerText = t.groomParents;
+      document.getElementById('txt-groom-degree').innerText = t.groomDegree;
+      document.getElementById('txt-bride').innerText = t.bride;
+      document.getElementById('txt-bride-parents').innerText = t.brideParents;
+      document.getElementById('txt-bride-degree').innerText = t.brideDegree;
+      document.getElementById('txt-presence-req').innerText = t.presenceReq;
+      document.getElementById('txt-scroll').innerText = t.scroll;
+      document.getElementById('txt-save-date').innerText = t.saveDate;
+      document.getElementById('txt-scratch-sub').innerText = t.scratchSub;
+      document.getElementById('txt-wedding-date').innerText = t.weddingDate;
+      document.getElementById('txt-wedding-day').innerText = t.weddingDay;
+      document.getElementById('txt-wedding-time').innerText = t.weddingTime;
+      document.getElementById('txt-slide1').innerText = t.slide1;
+      document.getElementById('txt-slide2').innerText = t.slide2;
+      document.getElementById('txt-slide3').innerText = t.slide3;
+      document.getElementById('txt-countdown-title').innerText = t.countdownTitle;
+      document.getElementById('lbl-days').innerText = t.days;
+      document.getElementById('lbl-hours').innerText = t.hours;
+      document.getElementById('lbl-mins').innerText = t.mins;
+      document.getElementById('lbl-secs').innerText = t.secs;
+      document.getElementById('txt-timeline-title').innerText = t.timelineTitle;
+      document.getElementById('txt-evt1-title').innerText = t.evt1Title;
+      document.getElementById('txt-evt1-time').innerText = t.evt1Time;
+      document.getElementById('txt-evt1-desc').innerText = t.evt1Desc;
+      document.getElementById('txt-evt2-title').innerText = t.evt2Title;
+      document.getElementById('txt-evt2-time').innerText = t.evt2Time;
+      document.getElementById('txt-evt2-desc').innerText = t.evt2Desc;
+      document.getElementById('txt-evt3-title').innerText = t.evt3Title;
+      document.getElementById('txt-evt3-time').innerText = t.evt3Time;
+      document.getElementById('txt-evt3-desc').innerText = t.evt3Desc;
+      document.getElementById('txt-venue-heading').innerText = t.venueHeading;
+      document.getElementById('txt-venue-title').innerText = t.venueTitle;
+      document.getElementById('txt-venue-address').innerText = t.venueAddress;
+      document.getElementById('txt-map-btn').innerText = t.mapBtn;
+      document.getElementById('inp-name').placeholder = t.inpName;
+      document.getElementById('inp-email').placeholder = t.inpEmail;
+      document.getElementById('opt-default').innerText = t.optDefault;
+      document.getElementById('opt-yes').innerText = t.optYes;
+      document.getElementById('opt-no').innerText = t.optNo;
+      document.getElementById('btn-submit').innerText = t.btnSubmit;
+      document.getElementById('lang-btn').innerText = t.langBtn;
+    }
+
+    // Default mobile language detection (Tamil or English)
+    function initDefaultLanguage() {
+      const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      if (userLang.startsWith('ta')) {
+        applyLanguage('ta');
+      } else {
+        applyLanguage('en');
       }
     }
-    window.addEventListener('DOMContentLoaded', initDefaultMobileLanguage);
+    window.addEventListener('DOMContentLoaded', initDefaultLanguage);
+
+    function toggleLanguage() {
+      applyLanguage(currentLang === 'en' ? 'ta' : 'en');
+      initScratchCard(); // Redraw canvas text if not already scratched
+    }
 
     function openInvitation() {
-      // Unlock body and force scroll directly to the top
       document.body.classList.add('unlocked');
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
@@ -724,7 +880,7 @@
       document.getElementById('cover-wrapper').classList.add('hide-cover');
       document.getElementById('content-screen').classList.add('show-content');
       document.getElementById('audio-toggle').classList.add('visible');
-      document.getElementById('lang-display').classList.add('visible');
+      document.getElementById('lang-btn').classList.add('visible');
 
       music.play().catch(e => console.log("Audio autoplay restricted:", e));
 
@@ -757,7 +913,7 @@
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
     }
 
-    // Snow Canvas particle effect
+    // Snow particle effect
     const snowCanvas = document.getElementById('snow-canvas');
     const snowCtx = snowCanvas.getContext('2d');
 
@@ -812,17 +968,18 @@
     // Scratch Card
     function initScratchCard() {
       const canvas = document.getElementById('scratch-canvas');
-      const ctx = canvas.getContext('2d');
+      if (canvas.style.display === 'none') return;
       
+      const ctx = canvas.getContext('2d');
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
 
       ctx.fillStyle = '#b89228';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = '500 13px Montserrat';
+      ctx.font = '500 13px Mukta Malar, Montserrat';
       ctx.fillStyle = '#0e0a07';
       ctx.textAlign = 'center';
-      ctx.fillText('Scratch Here', canvas.width / 2, canvas.height / 2 + 4);
+      ctx.fillText(translations[currentLang].scratchCanvasText, canvas.width / 2, canvas.height / 2 + 4);
 
       let isDrawing = false;
       let isCleared = false;
@@ -869,7 +1026,7 @@
       canvas.addEventListener('touchmove', scratch, { passive: false });
     }
 
-    // Carousel
+    // Carousel Slider
     function initCarousel() {
       const slides = document.querySelectorAll('.carousel-slide');
       const dots = document.querySelectorAll('.dot');
