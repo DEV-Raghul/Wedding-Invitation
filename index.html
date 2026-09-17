@@ -951,18 +951,70 @@
     drawSnow();
 
     // Countdown Timer
+    //function startCountdown() {
+      //const targetDate = new Date("August 31, 2026 10:30:00").getTime();
+      //setInterval(() => {
+        //const diff = targetDate - new Date().getTime();
+        //if (diff > 0) {
+          //document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+          //document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+          //document.getElementById("mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+          //document.getElementById("secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+        //}
+      //}, 1000);
+    //}
+
+
     function startCountdown() {
-      const targetDate = new Date("August 31, 2026 10:30:00").getTime();
-      setInterval(() => {
-        const diff = targetDate - new Date().getTime();
-        if (diff > 0) {
-          document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-          document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-          document.getElementById("mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-          document.getElementById("secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-        }
-      }, 1000);
+  // Target date: October 11, 2026 at 10:30 AM
+  const targetDate = new Date("October 11, 2026 10:30:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const mins = Math.floor(
+        (diff % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const secs = Math.floor(
+        (diff % (1000 * 60)) / 1000
+      );
+
+      document.getElementById("days").innerText =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").innerText =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("mins").innerText =
+        String(mins).padStart(2, "0");
+
+      document.getElementById("secs").innerText =
+        String(secs).padStart(2, "0");
+    } else {
+      // Countdown finished
+      document.getElementById("days").innerText = "00";
+      document.getElementById("hours").innerText = "00";
+      document.getElementById("mins").innerText = "00";
+      document.getElementById("secs").innerText = "00";
     }
+  }
+
+  // Run immediately
+  updateCountdown();
+
+  // Update every second
+  setInterval(updateCountdown, 1000);
+}
+
+// Start countdown
+startCountdown();
+    
 
     // Scratch Card
     function initScratchCard() {
